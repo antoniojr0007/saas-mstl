@@ -19,13 +19,10 @@ export async function signInWithGithub() {
 export async function signInWithGoogle() {
   const googleSignInURL = new URL('https://accounts.google.com/o/oauth2/auth')
 
-  googleSignInURL.searchParams.set(
-    'client_id',
-    '508328687128-flhdl6q9lphq9m5b86u5eend2vjmlvd2.apps.googleusercontent.com',
-  )
+  googleSignInURL.searchParams.set('client_id', env.GOOGLE_OAUTH_CLIENT_ID)
   googleSignInURL.searchParams.set(
     'redirect_uri',
-    'http://localhost:3000/api/auth/callback/google',
+    env.GOOGLE_OAUTH_REDIRECT_URI,
   )
   googleSignInURL.searchParams.set('response_type', 'code')
   googleSignInURL.searchParams.set('scope', 'openid profile email')
@@ -38,10 +35,10 @@ export async function signInWithFacebook() {
     'https://www.facebook.com/v12.0/dialog/oauth',
   )
 
-  facebookSignInURL.searchParams.set('client_id', '1078314600639652')
+  facebookSignInURL.searchParams.set('client_id', env.FACEBOOK_OAUTH_CLIENT_ID)
   facebookSignInURL.searchParams.set(
     'redirect_uri',
-    'http://localhost:3000/api/auth/callback/facebook',
+    env.FACEBOOK_OAUTH_REDIRECT_URI,
   )
   facebookSignInURL.searchParams.set('response_type', 'code')
   facebookSignInURL.searchParams.set('scope', 'public_profile,email')

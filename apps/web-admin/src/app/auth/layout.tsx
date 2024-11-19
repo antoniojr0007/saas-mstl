@@ -7,8 +7,8 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  if (!isAuthenticated()) {
-    redirect('/auth/sign-in')
+  if (isAuthenticated()) {
+    redirect('/')
   }
 
   return (

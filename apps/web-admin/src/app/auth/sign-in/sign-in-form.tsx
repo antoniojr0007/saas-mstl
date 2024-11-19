@@ -22,7 +22,7 @@ import {
 } from '../actions'
 import { signInWithEmailAndPassword } from './actions'
 
-export async function SignInForm() {
+export function SignInForm() {
   const router = useRouter()
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(

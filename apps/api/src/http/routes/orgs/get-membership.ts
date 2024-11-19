@@ -24,6 +24,7 @@ export async function GetMemberShip(app: FastifyInstance) {
               memberShip: z.object({
                 id: z.string().uuid(),
                 role: RoleSchema,
+                userId: z.string().uuid(),
                 organizationId: z.string().uuid(),
               }),
             }),
@@ -38,7 +39,8 @@ export async function GetMemberShip(app: FastifyInstance) {
         return {
           memberShip: {
             id: memberShip.id,
-            role: memberShip.role,
+            role: RoleSchema.parse(memberShip.role),
+            userId: memberShip.userId,
             organizationId: memberShip.organizationId,
           },
         }

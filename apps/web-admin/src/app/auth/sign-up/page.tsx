@@ -1,4 +1,4 @@
-import SignUpForm from './sign-iu-form'
+import { SignUpForm } from './sign-up-form'
 
 export default function SignUpPage() {
   return <SignUpForm />
