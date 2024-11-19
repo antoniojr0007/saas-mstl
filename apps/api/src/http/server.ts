@@ -122,6 +122,6 @@ app.register(GetPendingInvites)
 // Billing Organization Routes
 app.register(GetOrganizationBilling)
 
-app.listen({ port: env.SERVER_PORT }).then(() => {
+app.listen({ port: env.PORT }).then(() => {
   console.log('HTTP server running!')
 })
