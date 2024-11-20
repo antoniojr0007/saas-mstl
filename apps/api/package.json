@@ -2,6 +2,7 @@
   "name": "app",
   "version": "1.0.0",
   "main": "index.js",
+  "license":"MIT",
   "scripts": {
     "dev": "yarn env:load tsx watch src/http/server.ts",
     "db:migrate": "yarn env:load prisma migrate dev",
