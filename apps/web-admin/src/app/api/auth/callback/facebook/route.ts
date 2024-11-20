@@ -15,28 +15,43 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  const { token } = await SignInWithFacebook({ code })
+  try {
+    const { token } = await SignInWithFacebook({ code })
 
-  const cookieStore = await cookies()
-  cookieStore.set('session-token', token, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
-  })
-
-  const inviteId = cookieStore.get('inviteId')?.value
-
-  if (inviteId) {
-    try {
-      await acceptInvite(inviteId)
-      cookieStore.delete('inviteId')
-    } catch (error) {
-      console.error('Error accepting invite:', error)
+    if (!token) {
+      return NextResponse.json(
+        { message: 'Failed to retrieve token from Facebook.' },
+        { status: 401 },
+      )
     }
+
+    const cookieStore = await cookies()
+    cookieStore.set('session-token', token, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    })
+
+    const inviteId = cookieStore.get('inviteId')?.value
+
+    if (inviteId) {
+      try {
+        await acceptInvite(inviteId)
+        cookieStore.delete('inviteId')
+      } catch (error) {
+        console.error('Error accepting invite:', error)
+      }
+    }
+
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = '/'
+    redirectUrl.search = ''
+
+    return NextResponse.redirect(redirectUrl)
+  } catch (error) {
+    console.error('Error during Facebook sign-in:', error)
+    return NextResponse.json(
+      { message: 'An error occurred during Facebook sign-in.' },
+      { status: 500 },
+    )
   }
-
-  const redirectUrl = request.nextUrl.clone()
-  redirectUrl.pathname = '/'
-  redirectUrl.search = ''
-
-  return NextResponse.redirect(redirectUrl)
 }

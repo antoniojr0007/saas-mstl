@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "yarn env:load next dev --turbo",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "build": "yarn env:load next build",
+    "start": "yarn env:load next start",
+    "lint": "yarn env:load next lint",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -28,10 +28,10 @@
     "dayjs": "^1.11.13",
     "ky": "^1.7.2",
     "lucide-react": "^0.454.0",
-    "next": "15.0.2",
+    "next": "^15.0.3",
     "next-themes": "^0.4.3",
-    "react": "19.0.0-rc-cd22717c-20241013",
-    "react-dom": "19.0.0-rc-cd22717c-20241013",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },
