@@ -16,12 +16,12 @@ import {
 } from './ui/dropdown-menu'
 
 export async function OrganizationSwitcher() {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = await getCurrentOrg()
 
   const { organizations } = await getOrganizations()
 
   const currentOrganization = organizations.find(
-    (org) => org.slug === currentOrg,
+    (organization) => organization.slug === currentOrg,
   )
 
   return (

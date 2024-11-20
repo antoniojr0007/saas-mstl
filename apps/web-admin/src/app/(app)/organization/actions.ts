@@ -65,7 +65,7 @@ export async function createOrganizationAction(data: FormData) {
   try {
     await createOrganization({
       name,
-      domain,
+      domain: domain ?? '',
       shouldAttachUsersByDomain,
     })
 
@@ -94,7 +94,7 @@ export async function createOrganizationAction(data: FormData) {
 }
 
 export async function updateOrganizationAction(data: FormData) {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = await getCurrentOrg()
 
   const result = organizationSchema.safeParse(Object.fromEntries(data))
 

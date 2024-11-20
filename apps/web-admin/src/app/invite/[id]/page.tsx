@@ -14,14 +14,15 @@ import { getInvite } from '@/http/get-invite'
 
 dayjs.extend(relativeTime)
 
-interface InvitePageProps {
+/* interface InvitePageProps {
   params: {
     id: string
   }
-}
-
-export default async function InvitePage({ params }: InvitePageProps) {
-  const inviteId = params.id
+} */
+type tParams = Promise<{ id: string }>
+export default async function InvitePage(props: { params: tParams }) {
+  const { id } = await props.params
+  const inviteId = id
 
   const { invite } = await getInvite(inviteId)
   const isUserAuthenticated = await isAuthenticated()
