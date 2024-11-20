@@ -5,7 +5,7 @@ interface ShutdownOrganizationRequest {
 }
 
 export async function shutdownOrganization({
-  org,
+  organization,
 }: ShutdownOrganizationRequest) {
   await api.delete(`organizations/${organization}`)
 }

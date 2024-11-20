@@ -9,7 +9,7 @@ interface UpdateMemberRequest {
 }
 
 export async function updateMember({
-  org,
+  organization,
   memberId,
   role,
 }: UpdateMemberRequest) {

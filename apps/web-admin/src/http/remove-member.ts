@@ -5,6 +5,9 @@ interface RemoveMemberRequest {
   memberId: string
 }
 
-export async function removeMember({ org, memberId }: RemoveMemberRequest) {
+export async function removeMember({
+  organization,
+  memberId,
+}: RemoveMemberRequest) {
   await api.delete(`organizations/${organization}/members/${memberId}`)
 }

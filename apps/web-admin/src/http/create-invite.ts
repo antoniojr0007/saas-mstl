@@ -11,7 +11,7 @@ interface CreateInviteRequest {
 type CreateInviteResponse = void
 
 export async function createInvite({
-  org,
+  organization,
   email,
   role,
 }: CreateInviteRequest): Promise<CreateInviteResponse> {

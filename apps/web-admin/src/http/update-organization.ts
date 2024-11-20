@@ -10,7 +10,7 @@ interface UpdateOrganizationRequest {
 type UpdateOrganizationResponse = void
 
 export async function updateOrganization({
-  org,
+  organization,
   name,
   domain,
   shouldAttachUsersByDomain,
